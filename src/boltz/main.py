@@ -625,6 +625,7 @@ def predict(
     msa_server_url: str = "https://api.colabfold.com",
     msa_pairing_strategy: str = "greedy",
     no_potentials: bool = False,
+    num_out_samples = 1000,
 ) -> None:
     """Run predictions with Boltz-1."""
     # If cpu, write a friendly warning
@@ -761,12 +762,14 @@ def predict(
         precision=32,
     )
 
-    # Compute predictions
-    trainer.predict(
-        model_module,
-        datamodule=data_module,
-        return_predictions=False,
-    )
+    # Compute multiple predictions
+    for i in tqdm(range(num__out_samples)):
+        print(f"Starting prediction sample_{i+1}")
+        trainer.predict(
+            model_module,
+            datamodule=data_module,
+            return_predictions=False,
+        )
 
 
 if __name__ == "__main__":
