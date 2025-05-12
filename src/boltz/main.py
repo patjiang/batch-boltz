@@ -764,7 +764,7 @@ def predict(
 
     # Compute multiple predictions
     for i in tqdm(range(num_out_samples)):
-        print(f"Starting prediction sample_{i+1}")
+        click.echo(f"Starting prediction sample_{i+1}")
         trainer.predict(
             model_module,
             datamodule=data_module,
