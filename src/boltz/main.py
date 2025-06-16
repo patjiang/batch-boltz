@@ -761,15 +761,12 @@ def predict(
         devices=devices,
         precision=32,
     )
-
-    # Compute multiple predictions
-    for i in tqdm(range(num_out_samples)):
-        click.echo(f"Starting prediction sample_{i+1}")
-        trainer.predict(
-            model_module,
-            datamodule=data_module,
-            return_predictions=False,
-        )
+    
+    trainer.predict(
+        model_module,
+        datamodule=data_module,
+        return_predictions=False,
+    )
 
 
 if __name__ == "__main__":
